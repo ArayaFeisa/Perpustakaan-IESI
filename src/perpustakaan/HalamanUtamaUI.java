@@ -39,6 +39,11 @@ public class HalamanUtamaUI extends javax.swing.JFrame {
         jMenuBar1.add(menuPencarian);
 
         menuPeminjaman.setText("Peminjaman");
+        menuPeminjaman.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuPeminjamanMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuPeminjaman);
 
         setJMenuBar(jMenuBar1);
@@ -60,6 +65,11 @@ public class HalamanUtamaUI extends javax.swing.JFrame {
     private void menuPencarianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPencarianMouseClicked
         Perpustakaan.controllerPencarian = new PencarianController();
         Perpustakaan.controllerPencarian.showFormPencarian();
+    }//GEN-LAST:event_menuPencarianMouseClicked
+
+    private void menuPeminjamanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPencarianMouseClicked
+        Perpustakaan.controllerPencarian = new PencarianController();
+        Perpustakaan.controllerPencarian.showFormPeminjaman();
     }//GEN-LAST:event_menuPencarianMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

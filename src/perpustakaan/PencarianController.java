@@ -15,6 +15,11 @@ public class PencarianController {
         Perpustakaan.formPencarian = new FormPencarian();
         Perpustakaan.formPencarian.tampilkan(); 
     }
+
+    public void showFormPeminjaman() {
+        Perpustakaan.formPeminjaman = new FormPeminjaman();
+        Perpustakaan.formPeminjaman.tampilkan();
+    }
     
     public void cariBuku(String judul) {
         BukuProvider bukuProvider = new BukuProvider();
@@ -26,8 +31,32 @@ public class PencarianController {
                 dialogUI.pack();
                 dialogUI.setLocationRelativeTo(null);
                 dialogUI.setVisible(true);
+            }
+            else {
+                Perpustakaan.formPencarian.display(listBuku);
+                // Perpustakaan.formPeminjaman.display(listBuku);
+            }
+        } catch(Exception ex) {
+            DialogUI dialogUI = new DialogUI("Connection Error");
+            dialogUI.pack();
+            dialogUI.setLocationRelativeTo(null);
+            dialogUI.setVisible(true);
+            // System.out.println(ex);
+        }
+    }
+
+    public void cariBukuFormPeminjaman(String judul) {
+        BukuProvider bukuProvider = new BukuProvider();
+        try {
+            ArrayList<Buku> listBuku = bukuProvider.selectBuku(judul);
+            if(listBuku.isEmpty())
+            {
+                DialogUI dialogUI = new DialogUI("Buku tidak terdaftar");
+                dialogUI.pack();
+                dialogUI.setLocationRelativeTo(null);
+                dialogUI.setVisible(true);
             } 
-            else Perpustakaan.formPencarian.display(listBuku);
+            else Perpustakaan.formPeminjaman.display(listBuku);
         } catch(Exception ex) {
             DialogUI dialogUI = new DialogUI("Connection Error");
             dialogUI.pack();
@@ -35,5 +64,4 @@ public class PencarianController {
             dialogUI.setVisible(true);
         }
     }
-    
 }
