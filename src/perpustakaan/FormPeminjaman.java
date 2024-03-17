@@ -141,7 +141,7 @@ public class FormPeminjaman extends javax.swing.JFrame {
         // TODO add your handling code here:
         String judul = jTextFieldJudul.getText();
         // Perpustakaan.controllerPencarian.cariBuku(judul);
-        Perpustakaan.controllerPencarian.cariBukuFormPeminjaman(judul);
+        Perpustakaan.controllerPeminjaman.cariBukuFormPeminjaman(judul);
     }//GEN-LAST:event_jButtonCariMouseClicked
 
     public void display(ArrayList<Buku> bukuList) {
@@ -156,6 +156,22 @@ public class FormPeminjaman extends javax.swing.JFrame {
         jtBuku.setModel(model);
     }
 
+    public void tambahBuku(Buku buku, int lama) {
+        // private ArrayList<BukuDipinjam> bukuDipinjamCollection = new ArrayList<>();
+        
+        bukuDipinjam.judul = buku.judul;
+        bukuDipinjam.lama = lama;
+        bukuDipinjamCollection.add(bukuDipinjam);
+    }
+
+    public void hapusBuku(Buku buku) {
+        for (BukuDipinjam bukuDipinjam : bukuDipinjamCollection) {
+            if(bukuDipinjam.judul == buku.judul){
+                bukuDipinjamCollection.remove(bukuDipinjam);
+            }
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCari;
     private javax.swing.JButton jButtonPinjam;
@@ -166,5 +182,8 @@ public class FormPeminjaman extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldJudul;
     private javax.swing.JTable jtBuku;
     private javax.swing.JTable jtBukuPinjam;
+
+    public BukuDipinjam bukuDipinjam;
+    public ArrayList<BukuDipinjam> bukuDipinjamCollection = new ArrayList<>();
     // End of variables declaration//GEN-END:variables
 }

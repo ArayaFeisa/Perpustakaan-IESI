@@ -26,14 +26,14 @@ public class BukuProvider {
     
     public ArrayList<Buku> selectBuku(String judul) {
         
-        ArrayList<Buku> foundBuku = new ArrayList<>();
+        ArrayList<Buku> bukuMatchCollection = new ArrayList<>();
         
         for(Buku buku : this.bukuCollection) {
             if(buku.judul.contains(judul))
-                foundBuku.add(buku);
+                bukuMatchCollection.add(buku);
+                // foundBuku.add(buku);
         }
-        
-        return foundBuku;
+        return bukuMatchCollection;
+        // return foundBuku;
     }
-    
 }

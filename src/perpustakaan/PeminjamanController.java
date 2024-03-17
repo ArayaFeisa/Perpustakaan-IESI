@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package perpustakaan;
 
-import java.awt.Dialog;
 import java.util.ArrayList;
 
-
-public class PencarianController {
-    
-    public void showFormPencarian() {
-        Perpustakaan.formPencarian = new FormPencarian();
-        Perpustakaan.formPencarian.tampilkan(); 
+public class PeminjamanController {
+    public void showFormPeminjaman() {
+        Perpustakaan.formPeminjaman = new FormPeminjaman();
+        Perpustakaan.formPeminjaman.tampilkan();
     }
-    
-    public void cariBuku(String judul) {
+
+    public void cariBukuFormPeminjaman(String judul) {
         BukuProvider bukuProvider = new BukuProvider();
         try {
             ArrayList<Buku> listBuku = bukuProvider.selectBuku(judul);
@@ -26,17 +18,20 @@ public class PencarianController {
                 dialogUI.pack();
                 dialogUI.setLocationRelativeTo(null);
                 dialogUI.setVisible(true);
-            }
-            else {
-                Perpustakaan.formPencarian.display(listBuku);
-                // Perpustakaan.formPeminjaman.display(listBuku);
-            }
+            } 
+            else Perpustakaan.formPeminjaman.display(listBuku);
         } catch(Exception ex) {
             DialogUI dialogUI = new DialogUI("Connection Error");
             dialogUI.pack();
             dialogUI.setLocationRelativeTo(null);
             dialogUI.setVisible(true);
-            // System.out.println(ex);
+        }
+    }
+
+    public void Peminjaman(ArrayList <BukuDipinjam> bukuDipinjam){
+        Peminjaman peminjaman = new Peminjaman(bukuDipinjam.size());
+        for(int i = 0; i < bukuDipinjam.size(); i++) {
+            peminjaman.add(bukuDipinjam.get(i));
         }
     }
 }
